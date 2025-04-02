@@ -368,3 +368,19 @@ footer {
         margin-bottom: 10px;
     }
 }
+
+footer a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--dark-gray);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--primary-color);
+}
+
+footer svg {
+    margin-right: 5px;
+}
