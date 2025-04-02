@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // API基础URL
-    const API_BASE_URL = 'http://localhost:8000';
+    // API基础URL - 根据环境自动设置
+    const isLocal = window.location.hostname === 'localhost' || 
+                   window.location.hostname === '127.0.0.1' ||
+                   window.location.protocol === 'file:';
+    const API_BASE_URL = isLocal 
+        ? 'http://localhost:8000' 
+        : `http://${window.location.hostname}:8000`;
     
     // 初始化签名板
     const canvas = document.getElementById('signature-pad');
