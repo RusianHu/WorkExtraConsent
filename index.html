@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自愿加班协议系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>自愿加班协议系统</h1>
+            <p class="subtitle">安全、便捷的电子协议签署平台</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="create">创建协议</button>
+            <button class="tab-btn" data-tab="view">查看协议</button>
+        </div>
+
+        <div class="tab-content">
+            <!-- 创建协议表单 -->
+            <div id="create" class="tab-pane active">
+                <form id="agreement-form">
+                    <div class="form-section">
+                        <h2>个人信息</h2>
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_number">身份证号</label>
+                            <input type="text" id="id_number" name="id_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="department">部门</label>
+                            <input type="text" id="department" name="department" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="position">职位</label>
+                            <input type="text" id="position" name="position" required>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>加班信息</h2>
+                        <div class="form-group">
+                            <label for="start_date">开始日期</label>
+                            <input type="datetime-local" id="start_date" name="start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">结束日期</label>
+                            <input type="datetime-local" id="end_date" name="end_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reason">加班原因</label>
+                            <textarea id="reason" name="reason" rows="3" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>协议条款</h2>
+                        <div id="terms-container" class="terms-container">
+                            <!-- 条款将通过JS动态加载 -->
+                            <p class="loading-terms">加载条款中...</p>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="accept_terms" name="accept_terms" required>
+                            <label for="accept_terms">我已阅读并同意以上条款</label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>电子签名</h2>
+                        <p class="signature-note">请在下方框内签名：</p>
+                        <div class="signature-container">
+                            <canvas id="signature-pad"></canvas>
+                            <button type="button" id="clear-signature" class="btn-secondary">清除签名</button>
+                        </div>
+                        <p class="legal-note">
+                            根据《中华人民共和国电子签名法》，您的电子签名与手写签名具有同等法律效力。
+                        </p>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">生成协议</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 查看协议表单 -->
+            <div id="view" class="tab-pane">
+                <form id="view-form">
+                    <div class="form-section">
+                        <h2>查看已有协议</h2>
+                        <div class="form-group">
+                            <label for="agreement_id">协议ID</label>
+                            <input type="text" id="agreement_id" name="agreement_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="decrypt_key">解密密钥</label>
+                            <input type="password" id="decrypt_key" name="decrypt_key" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">查看协议</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 结果模态框 -->
+        <div id="result-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>协议已创建</h2>
+                <div id="modal-content">
+                    <!-- 动态内容将在这里显示 -->
+                </div>
+                <div class="modal-actions">
+                    <button id="download-pdf" class="btn-primary">下载PDF</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 自愿加班协议系统 - 安全、合规的电子协议解决方案</p>
+    </footer>
+
+    <!-- 引入脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
