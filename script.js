@@ -8,19 +8,56 @@ document.addEventListener('DOMContentLoaded', function() {
         : `https://WorkExtraConsent.yanshanlaosiji.top`;    //改为你的服务器域名（按需设置反向代理）
     
     // 初始化签名板
-    const canvas = document.getElementById('signature-pad');
+    const canvas = document.getElementById("signature-pad");
     const signaturePad = new SignaturePad(canvas, {
-        backgroundColor: 'rgba(255, 255, 255, 0)',
-        penColor: 'rgb(0, 0, 0)'
+        minWidth: 1,
+        maxWidth: 3,
+        penColor: "#000",
+        backgroundColor: "#fff",
+        throttle: 16, // 节流时间(ms)，移动端建议16-32
+        velocityFilterWeight: 0.7, // 速度过滤权重
+        dotSize: (() => {
+            return (1 + 3) / 2;
+        })(),
+        onBegin: () => {
+            // 移动端触摸开始时阻止默认行为
+            if ('ontouchstart' in window) {
+                event.preventDefault();
+            }
+        }
     });
+    
+    // 添加触摸事件支持
+    canvas.addEventListener('touchmove', function(event) {
+        event.preventDefault();
+    }, { passive: false });
     
     // 调整签名板大小
     function resizeCanvas() {
+        const container = canvas.parentElement;
         const ratio = Math.max(window.devicePixelRatio || 1, 1);
-        canvas.width = canvas.offsetWidth * ratio;
-        canvas.height = canvas.offsetHeight * ratio;
-        canvas.getContext("2d").scale(ratio, ratio);
-        signaturePad.clear(); // 清除签名
+        
+        // 设置画布尺寸
+        canvas.width = container.clientWidth * ratio;
+        canvas.height = 200 * ratio;
+        
+        // 设置CSS尺寸
+        canvas.style.width = `${container.clientWidth}px`;
+        canvas.style.height = '200px';
+        
+        // 缩放上下文并保持清晰度
+        const ctx = canvas.getContext("2d");
+        ctx.scale(ratio, ratio);
+        ctx.lineWidth = 2;
+        
+        // 重新绘制签名(如果有)
+        if (signaturePad.isEmpty()) {
+            signaturePad.clear();
+        } else {
+            const data = signaturePad.toData();
+            signaturePad.clear();
+            signaturePad.fromData(data);
+        }
     }
     
     window.addEventListener("resize", resizeCanvas);

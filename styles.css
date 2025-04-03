@@ -153,6 +153,9 @@ textarea:focus {
 }
 
 #signature-pad {
+    touch-action: none; /* 禁用浏览器默认触摸行为 */
+    -webkit-user-select: none; /* 防止iOS上的文本选择 */
+    user-select: none;
     border: 1px dashed var(--dark-gray);
     border-radius: var(--border-radius);
     width: 100%;
