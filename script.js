@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
                    window.location.protocol === 'file:';
     const API_BASE_URL = isLocal 
         ? 'http://localhost:8000' 
-        : `http://${window.location.hostname}:8000`;
+        : `https://WorkExtraConsent.yanshanlaosiji.top`;    //改为你的服务器域名（按需设置反向代理）
     
     // 初始化签名板
     const canvas = document.getElementById('signature-pad');
