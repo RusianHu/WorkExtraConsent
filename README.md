@@ -36,7 +36,7 @@
 ### 安装步骤
 1. 克隆项目到本地：
    ```bash
-   git clone https://github.com/你的用户名/WorkExtraConsent.git
+   git clone https://github.com/RusianHu/WorkExtraConsent.git
    cd WorkExtraConsent
    ```
 
@@ -85,15 +85,9 @@ agreement:
 ### 导出PDF
 - 在协议详情页面点击“下载PDF”按钮，系统会生成协议的PDF文件。
 
-## 示例截图
-![创建协议页面](https://via.placeholder.com/800x400?text=创建协议页面截图)
-![查看协议页面](https://via.placeholder.com/800x400?text=查看协议页面截图)
-
 ## 许可证
 本项目基于 [MIT License](LICENSE) 开源。您可以自由使用、修改和分发本项目，但需保留版权声明。
 
 ## 联系我们
 - **邮箱**: yanshanlaosiji@gmail.com
-- **GitHub**: [WorkExtraConsent](https://github.com/你的用户名/WorkExtraConsent)
-
-欢迎提交问题或贡献代码！
+- **GitHub**: [WorkExtraConsent](https://github.com/RusianHu/WorkExtraConsent)
