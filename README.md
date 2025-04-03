@@ -48,7 +48,7 @@
 
 3. 启动后端服务：
    ```bash
-   uvicorn main:app --reload
+   python main.py
    ```
 
 4. 配置前端：
