@@ -92,7 +92,7 @@ agreement:
 ![image](https://github.com/user-attachments/assets/91682814-842f-43f4-a8e2-43ddc27d4f0d)
 
 ## 许可证
-本项目基于 [MIT License](LICENSE) 开源。您可以自由使用、修改和分发本项目，但需保留版权声明。
+本项目基于 [MIT License](License) 开源。您可以自由使用、修改和分发本项目，但需保留版权声明。
 
 ## 联系我们
 - **邮箱**: yanshanlaosiji@gmail.com
